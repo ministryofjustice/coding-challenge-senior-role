@@ -35,9 +35,9 @@ Example output (shape, not strict format):
 ```json
 {
   "total": 10,
-  "byType": {
-    "click": { "count": 6, "totalValue": 120 },
-    "purchase": { "count": 4, "totalValue": 300 }
+  "type": {
+    "click": { "count": 6, "aggregate": 120 },
+    "purchase": { "count": 4, "aggregate": 300 }
   }
 }
 ```
