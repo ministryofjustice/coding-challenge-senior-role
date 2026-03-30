@@ -113,8 +113,8 @@ We care about:
 
 ## Follow-Up questions
 Be prepared to discuss:
-- How did TDD influence your design?
-- What would you refactor first?
-- How would this change at scale?
-- What assumptions did you make?
-- Where could this break?
+1. How did TDD influence your design?
+2. What would you refactor first?
+3. How would this change at scale?
+4. What assumptions did you make?
+5. Where could this break?
