@@ -13,7 +13,7 @@ The focus is on **clarity, structure, decisions, and your approach to testing**,
 Create a service (or single module) that:
 
 ### 1. Accepts Events  
-Each event contains:
+At minimum, each event contains:
 - `id` (string)
 - `timestamp` (ISO format)
 - `type` (string)
