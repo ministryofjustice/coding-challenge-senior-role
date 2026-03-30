@@ -86,10 +86,11 @@ If you choose not to strictly follow TDD, briefly explain your approach.
 - Evidence of TDD or thoughtful testing strategy
 - Tests that are meaningful, not excessive
 
-### Documentation (Very Short)
-Provide a brief README (or comments) covering:
+### Documentation (short)
+Provide a brief README covering:
 - How to run the code
 - Any assumptions made
+- How the application flows (illustration or bullet-points), and
 - What you would improve with more time
 
 ---
@@ -99,7 +100,7 @@ Provide a brief README (or comments) covering:
 
 Do not over-engineer. Prioritise clarity.
 
-## Optional (Only if time allows)
+## Optional (only if time allows)
 - Support filtering by date range
 - Handle large datasets efficiently
 - Add an API wrapper if you started with a function
