@@ -10,7 +10,7 @@ The focus is on **clarity, structure, decisions, and your approach to testing**,
 
 ## The Challenge  
 
-Create a service (or single module) that:
+Create a service that:
 
 ### 1. Accepts events  
 At minimum, each event contains:
