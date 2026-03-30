@@ -103,7 +103,6 @@ Do not over-engineer. Prioritise clarity.
 ## Optional (only if time allows)
 - Support filtering by date range
 - Handle large datasets efficiently
-- Add an API wrapper if you started with a function
 
 ## Evaluation criteria
 We care about:
