@@ -83,8 +83,8 @@ If you choose not to strictly follow TDD, briefly explain your approach.
 - Simplicity where appropriate
 
 ### Testing
-- At least 1–2 meaningful tests
-- Or a clear explanation of what you would test
+- Evidence of TDD or thoughtful testing strategy
+- Tests that are meaningful, not excessive
 
 ### Documentation (Very Short)
 Provide a brief README (or comments) covering:
@@ -94,7 +94,7 @@ Provide a brief README (or comments) covering:
 
 ---
 
-## Time Limit
+## Time limit
 ~1 hour
 
 Do not over-engineer. Prioritise clarity.
@@ -104,14 +104,15 @@ Do not over-engineer. Prioritise clarity.
 - Handle large datasets efficiently
 - Add an API wrapper if you started with a function
 
-## Evaluation Criteria
+## Evaluation criteria
 We care about:
 - Clarity over completeness
 - Structure over features
 - Decisions over decoration
 
-## Follow-Up Questions
+## Follow-Up questions
 Be prepared to discuss:
+- How did TDD influence your design?
 - What would you refactor first?
 - How would this change at scale?
 - What assumptions did you make?
