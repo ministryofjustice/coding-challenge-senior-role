@@ -12,7 +12,7 @@ The focus is on **clarity, structure, decisions, and your approach to testing**,
 
 Create a service (or single module) that:
 
-### 1. Accepts Events  
+### 1. Accepts events  
 At minimum, each event contains:
 - `id` (string)
 - `timestamp` (ISO format)
@@ -22,7 +22,7 @@ At minimum, each event contains:
 
 ---
 
-### 2. Returns a Summary  
+### 2. Returns a summary  
 
 Given a collection of events, return:
 
@@ -44,7 +44,7 @@ Example output (shape, not strict format):
 
 ---
 
-### 3. Basic Validation
+### 3. Basic validation
 1. Handle invalid or missing fields
 2. Decide how to treat duplicates (id)
 
@@ -66,7 +66,7 @@ If you choose not to strictly follow TDD, briefly explain your approach.
 ---
 
 
-## What We’re Looking For
+## What we’re looking for
 
 ### Code quality
 - Clean, readable structure
