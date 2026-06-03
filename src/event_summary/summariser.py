@@ -7,7 +7,7 @@ class EventValidationError(ValueError):
 
 
 def validate_event(event):
-    required_fields = ["id", "timestamp","type""value"]
+    required_fields = ["id", "timestamp","type","value"]
 
     for field in required_fields:
         if field not in event:
@@ -77,12 +77,3 @@ def summarise_events(events):
         "total": total,
         "type": summary_by_type,
     }
-
-if __name__ == "__main__":
-    demo_events = [
-        {"id": "1", "timestamp": "2026-06-02T10:00:00Z", "value": 10},
-        {"id": "1", "timestamp": "2026-06-02T10:00:00Z", "type": "purchase", "value": 10},
-        {"id": "2", "timestamp": "2026-06-02T10:01:00Z", "type": "click", "value": 20},
-        {"id": "3", "timestamp": "2026-06-02T10:02:00Z", "type": "purchase", "value": 100},
-    ]
-    print(summarise_events(demo_events))
