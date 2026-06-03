@@ -12,13 +12,6 @@ The focus is on **clarity, structure, decisions, and your approach to testing**,
 
 Create a service that:
 
-### 1. Accepts events  
-At minimum, each event contains:
-- `id` (string)
-- `timestamp` (ISO format)
-- `type` (string)
-- `value` (number)
-
 ### 1. Accepts events
 
 At minimum, each event contains:
