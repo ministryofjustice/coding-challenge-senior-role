@@ -21,7 +21,14 @@ At minimum, each event contains:
 
 ### 1. Accepts events
 
-The service accepts a list of event objects. Each event should contain:
+At minimum, each event contains:
+
+- `id` (string)
+- `timestamp` (ISO format)
+- `type` (string)
+- `value` (number)
+
+Example input event:
 
 ```python
 {
@@ -30,17 +37,19 @@ The service accepts a list of event objects. Each event should contain:
     "type": "click",
     "value": 10,
 }
+```
+
 ---
 
-### 2. Returns a summary  
+###  2. Returns a summary
 
 Given a collection of events, return:
 
-- Total number of events  
-- Count per event type  
-- Sum of `value` per event type  
+- Total number of events
+- Count per event type
+- Sum of `value` per event type
 
-Example output (shape, not strict format):
+Example output:
 
 ```json
 {
@@ -51,7 +60,6 @@ Example output (shape, not strict format):
   }
 }
 ```
-
 ---
 
 ### 3. Basic validation
