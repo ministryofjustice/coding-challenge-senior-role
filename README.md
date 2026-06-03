@@ -19,7 +19,17 @@ At minimum, each event contains:
 - `type` (string)
 - `value` (number)
 
+### 1. Accepts events
 
+The service accepts a list of event objects. Each event should contain:
+
+```python
+{
+    "id": "1",
+    "timestamp": "2026-06-02T10:00:00Z",
+    "type": "click",
+    "value": 10,
+}
 ---
 
 ### 2. Returns a summary  
