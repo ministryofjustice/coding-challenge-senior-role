@@ -11,7 +11,7 @@ def validate_event(event):
 
     for field in required_fields:
         if field not in event:
-            raise EventValidationError(f"Missing required field: {field}")
+            raise EventValidationError(f"Missing  required field: {field}")
 
     if not isinstance(event["id"], str) or event["id"].strip() == "":
         raise EventValidationError("id must be a non-empty string")
