@@ -30,10 +30,4 @@ TDD means I wrote tests to describe the expected behaviour, then implemented the
 
    This checks numeric value validation.
 
-## Interview explanation
 
-I followed a lightweight TDD approach. I started with the happy path test to define the main expected output. Then I added edge-case tests for duplicate IDs and invalid input because those were specifically mentioned in the challenge.
-
-The tests influenced the design by keeping the implementation small. I separated validation into `validate_event`, while `summarise_events` handles duplicate detection and aggregation.
-
-I did not aim for exhaustive test coverage because the challenge was time-boxed to around one hour. I focused on clear, meaningful tests that prove the main behaviour.
