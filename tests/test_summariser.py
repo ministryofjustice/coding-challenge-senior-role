@@ -13,6 +13,7 @@ def test_summarises_valid_events_by_type():
     ]
 
     result = summarise_events(events)
+    
 
     assert result == {
         "total": 3,
