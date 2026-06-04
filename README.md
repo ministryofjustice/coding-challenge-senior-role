@@ -1,25 +1,39 @@
 # Senior Developer Coding Challenge (1 Hour)
 
-## Overview  
-Build a **small application** that ingests and summarises event data.
+# Event Summary Service
 
-The focus is on **clarity, structure, decisions, and your approach to testing**, not completeness.
+A small Python solution for the senior developer coding challenge.
+
+The application accepts a list of events, validates them, handles duplicate event IDs, and returns a summary grouped by event type.
+
+The focus of this solution is clarity, simple structure, clear assumptions, and meaningful tests.
 
 ---
 
+## How to run
 
-## The Challenge  
+Install pytest:
 
-Create a service that:
+```bash
+python -m pip install pytest
+```
 
-### 1. Accepts events
+Run the tests:
+
+```bash
+python -m pytest
+```
+
+---
+
+## 1. Accepts events
 
 At minimum, each event contains:
 
-- `id` (string)
-- `timestamp` (ISO format)
-- `type` (string)
-- `value` (number)
+* `id` string
+* `timestamp` ISO format string
+* `type` string
+* `value` number
 
 Example input event:
 
@@ -32,100 +46,134 @@ Example input event:
 }
 ```
 
+Example input list:
+
+```python
+events = [
+    {
+        "id": "1",
+        "timestamp": "2026-06-02T10:00:00Z",
+        "type": "click",
+        "value": 10,
+    },
+    {
+        "id": "2",
+        "timestamp": "2026-06-02T10:01:00Z",
+        "type": "click",
+        "value": 20,
+    },
+    {
+        "id": "3",
+        "timestamp": "2026-06-02T10:02:00Z",
+        "type": "purchase",
+        "value": 100,
+    },
+]
+```
+
 ---
 
-###  2. Returns a summary
+## 2. Returns a summary
 
-Given a collection of events, return:
+Given a collection of events, the service returns:
 
-- Total number of events
-- Count per event type
-- Sum of `value` per event type
+* total number of valid, non-duplicate events
+* count per event type
+* sum of `value` per event type
 
 Example output:
 
-```json
+```python
 {
-  "total": 10,
-  "type": {
-    "click": { "count": 6, "aggregate": 120 },
-    "purchase": { "count": 4, "aggregate": 300 }
-  }
+    "total": 3,
+    "type": {
+        "click": {"count": 2, "aggregate": 30},
+        "purchase": {"count": 1, "aggregate": 100},
+    },
 }
 ```
----
-
-### 3. Basic validation
-1. Handle invalid or missing fields
-2. Decide how to treat duplicates (id)
-
 
 ---
 
-## Testing
+## 3. Basic validation
 
-We value Test-Driven Development (TDD).
+The service validates that:
 
-Please:
+* required fields are present: `id`, `timestamp`, `type`, `value`
+* `id` is a non-empty string
+* `type` is a non-empty string
+* `timestamp` is a valid ISO datetime string
+* `value` is a number
 
-- Include a small but meaningful set of tests that cover:
-  - Core behaviour (happy path)
-  - At least one edge case
-- Ensure tests are clear and readable
-
-If you choose not to strictly follow TDD, briefly explain your approach.
-
----
-
-
-## What we’re looking for
-
-### Code quality
-- Clean, readable structure
-- Sensible naming
-- Logical organisation
-
-### Thought process
-- Sensible assumptions
-- Clear handling of edge cases
-- Evidence of trade-off thinking
-
-### Pragmatism
-- What you choose not to build
-- Simplicity where appropriate
-
-### Testing
-- Evidence of TDD or thoughtful testing strategy
-- Tests that are meaningful, not excessive
-
-### Documentation (short)
-Provide a brief README covering:
-- How to run the code
-- Any assumptions made
-- How the application flows (illustration or bullet-points), and
-- What you would improve with more time
+Invalid events fail fast by raising `EventValidationError`.
 
 ---
 
-## Time limit
-~1 hour
+## Duplicate handling
 
-Do not over-engineer. Prioritise clarity.
+I assumed `id` is the unique identifier for an event.
 
-## Optional (only if time allows)
-- Support filtering by date range
-- Handle large datasets efficiently
+If the same `id` appears more than once:
 
-## Evaluation criteria
-We care about:
-- Clarity over completeness
-- Structure over features
-- Decisions over decoration
+* the first valid event is kept
+* later duplicates are ignored
+* duplicate values are not added to the aggregate
+* if a duplicate has a different `type`, a warning is logged
 
-## Follow-Up questions
-Be prepared to discuss:
-1. How did TDD influence your design?
-2. What would you refactor first?
-3. How would this change at scale?
-4. What assumptions did you make?
-5. Where could this break?
+This avoids double-counting.
+
+---
+
+## Application flow
+
+1. Receive a list of events.
+2. Validate each event.
+3. Check whether the event ID has already been processed.
+4. Ignore duplicate IDs to avoid double-counting.
+5. Create a summary entry for the event type if needed.
+6. Increase the count and aggregate value for that event type.
+7. Return the final summary.
+
+---
+
+## Testing approach
+
+I used a lightweight TDD approach.
+
+I started with a happy path test to define the expected output for valid input. Then I added focused edge-case tests for duplicate IDs and invalid input.
+
+The tests cover:
+
+* valid events are summarised correctly
+* duplicate IDs are ignored
+* duplicate IDs with different types log a warning
+* missing required fields raise an error
+* invalid timestamp raises an error
+* non-numeric value raises an error
+
+The tests are intentionally small and readable because the challenge is time-boxed.
+
+---
+
+## Assumptions
+
+* Event `id` is the unique identifier.
+* Duplicate IDs should not be counted twice.
+* The first valid event wins when duplicates are found.
+* Invalid events fail fast.
+* Timestamp validation only checks ISO format.
+* Date range filtering is not implemented because it was optional.
+* Large dataset handling is not implemented because the challenge asks not to over-engineer.
+
+---
+
+## What I would improve with more time
+
+* Return invalid events in a structured error report instead of failing fast.
+* Write bad records to an audit or quarantine table.
+* Add a bad-record threshold agreed with the business.
+* Add date range filtering.
+* Add stronger timestamp checks, such as future or very old timestamps.
+* Use persistent deduplication for duplicates across multiple batches.
+* Use Spark or another distributed approach for very large datasets.
+* Add monitoring for total records, duplicate records, invalid records, and processing time.
